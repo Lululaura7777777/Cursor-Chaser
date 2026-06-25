@@ -1,0 +1,169 @@
+:root {
+  --bg1: #111827;
+  --bg2: #312e81;
+  --buddy: #fff7ed;
+  --ink: #1f2937;
+  --accent: #f9a8d4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, var(--bg2), var(--bg1) 55%);
+  color: white;
+  cursor: crosshair;
+}
+
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hint {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.75;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.buddy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 92px;
+  height: 92px;
+  transform: translate(-50%, -50%);
+  border-radius: 48% 52% 45% 55% / 55% 45% 55% 45%;
+  background: var(--buddy);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 -8px 18px rgba(251, 146, 60, 0.18);
+  transition: transform 0.18s ease, border-radius 0.3s ease;
+  will-change: left, top, transform;
+}
+
+.buddy::before,
+.buddy::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  width: 24px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--buddy);
+}
+
+.buddy::before { left: 10px; transform: rotate(-14deg); }
+.buddy::after { right: 10px; transform: rotate(14deg); }
+
+.face {
+  position: absolute;
+  inset: 0;
+}
+
+.eye {
+  position: absolute;
+  top: 34px;
+  width: 10px;
+  height: 15px;
+  border-radius: 999px;
+  background: var(--ink);
+  animation: blink 4s infinite;
+}
+
+.eye.left { left: 29px; }
+.eye.right { right: 29px; }
+
+.mouth {
+  position: absolute;
+  left: 50%;
+  top: 56px;
+  width: 16px;
+  height: 8px;
+  transform: translateX(-50%);
+  border-bottom: 3px solid var(--ink);
+  border-radius: 0 0 999px 999px;
+}
+
+.blush {
+  position: absolute;
+  top: 50px;
+  width: 13px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.blush-left { left: 16px; }
+.blush-right { right: 16px; }
+
+.message {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 78px);
+  transform: translateX(-50%);
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+  user-select: none;
+  transition: left 0.2s ease, top 0.2s ease, opacity 0.2s ease;
+}
+
+.heart,
+.sparkle {
+  position: fixed;
+  pointer-events: none;
+  animation: floatUp 900ms ease-out forwards;
+  font-size: 22px;
+}
+
+.zzz {
+  position: absolute;
+  right: -18px;
+  top: -12px;
+  font-weight: 800;
+  color: white;
+  opacity: 0;
+  transform: rotate(14deg);
+}
+
+.buddy.shy .blush { opacity: 1; }
+.buddy.shy { transform: translate(-50%, -50%) scale(0.94) rotate(-4deg); }
+.buddy.happy { animation: spin 550ms ease; }
+.buddy.sleepy .eye { height: 3px; top: 40px; animation: none; }
+.buddy.sleepy .mouth { width: 18px; height: 4px; border-bottom: 3px solid var(--ink); }
+.buddy.sleepy .zzz { opacity: 1; animation: nap 1.4s infinite ease-in-out; }
+
+@keyframes blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  50% { transform: translate(-50%, -50%) rotate(180deg) scale(1.12); }
+  to { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+
+@keyframes floatUp {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-80px) scale(1.7); }
+}
+
+@keyframes nap {
+  0%, 100% { transform: translateY(0) rotate(14deg); opacity: 0.35; }
+  50% { transform: translateY(-8px) rotate(14deg); opacity: 1; }
+}
