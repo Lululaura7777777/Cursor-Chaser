@@ -3,26 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cursor Chaser</title>
+  <title>Pocket Buddy</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="stage">
-    <div class="hint">Move your cursor. Try clicking the little friend.</div>
+  <main class="app">
+    <section class="hero">
+      <p class="eyebrow">Pocket Buddy v2</p>
+      <h1>A tiny friend that lives near your cursor.</h1>
+      <p class="subtitle">Choose a buddy, give them a name, and let them chase, hide, nap, and react to you.</p>
+      <button id="openSetup" class="secondary-btn">Customize buddy</button>
+    </section>
 
-    <div id="buddy" class="buddy" aria-label="cursor chasing buddy" role="button" tabindex="0">
-      <div class="face">
-        <span class="eye left"></span>
-        <span class="eye right"></span>
+    <div id="buddy" class="buddy blob medium" aria-label="Pocket buddy" role="button" tabindex="0">
+      <div class="buddy-face">
+        <span class="ear left-ear"></span>
+        <span class="ear right-ear"></span>
+        <span class="eye left-eye"></span>
+        <span class="eye right-eye"></span>
         <span class="mouth"></span>
+        <span class="tail"></span>
       </div>
-      <div class="blush blush-left"></div>
-      <div class="blush blush-right"></div>
-      <div class="zzz">zZ</div>
     </div>
 
-    <div id="message" class="message">hi, lulu :)</div>
+    <div id="speech" class="speech">Hi!</div>
+    <div id="particles" class="particles"></div>
   </main>
+
+  <section id="setupModal" class="modal open" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">Setup</p>
+          <h2>Make your Pocket Buddy</h2>
+        </div>
+        <button id="closeSetup" class="icon-btn" aria-label="Close setup">×</button>
+      </div>
+
+      <label class="field">
+        <span>Name</span>
+        <input id="buddyName" maxlength="18" placeholder="Lulu" />
+      </label>
+
+      <div class="field">
+        <span>Species</span>
+        <div class="option-grid" id="speciesOptions">
+          <button data-species="blob" class="option active">Blob</button>
+          <button data-species="cat" class="option">Cat</button>
+          <button data-species="dog" class="option">Dog</button>
+          <button data-species="ghost" class="option">Ghost</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span>Size</span>
+        <div class="option-grid" id="sizeOptions">
+          <button data-size="small" class="option">Small</button>
+          <button data-size="medium" class="option active">Medium</button>
+          <button data-size="large" class="option">Large</button>
+          <button data-size="huge" class="option">Huge</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span>Color</span>
+        <div class="color-grid" id="colorOptions">
+          <button data-color="#ffffff" class="color active" style="--swatch:#ffffff" aria-label="White"></button>
+          <button data-color="#ffc8dd" class="color" style="--swatch:#ffc8dd" aria-label="Pink"></button>
+          <button data-color="#bde0fe" class="color" style="--swatch:#bde0fe" aria-label="Blue"></button>
+          <button data-color="#cdb4db" class="color" style="--swatch:#cdb4db" aria-label="Purple"></button>
+          <button data-color="#d8f3dc" class="color" style="--swatch:#d8f3dc" aria-label="Green"></button>
+          <button data-color="#ffd6a5" class="color" style="--swatch:#ffd6a5" aria-label="Orange"></button>
+          <button data-color="#2f2f36" class="color" style="--swatch:#2f2f36" aria-label="Black"></button>
+        </div>
+      </div>
+
+      <button id="startBuddy" class="primary-btn">Start playing</button>
+      <p class="hint">Tip: move your mouse close, click, double click, or leave it alone for a nap.</p>
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>

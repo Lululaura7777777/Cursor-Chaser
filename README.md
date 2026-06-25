@@ -1,36 +1,37 @@
-# Cursor Chaser
+# Pocket Buddy v2
 
-A tiny interactive web toy: a shy little buddy runs away from your cursor, sneaks closer when you stop moving, spins when clicked, drops hearts on double-click, and falls asleep when ignored.
+A tiny interactive cursor friend you can customize in your browser.
 
-## Demo
+## Features
+
+- Choose your buddy's name
+- Pick a species: Blob, Cat, Dog, or Ghost
+- Choose size: Small, Medium, Large, Huge
+- Choose color
+- Buddy reacts to mouse movement, clicks, double clicks, and idle time
+- Settings are saved with `localStorage`
+- Pure HTML/CSS/JS — no build step
+
+## How to run locally
 
 Open `index.html` in your browser.
 
-## Files
-
-```txt
-cursor-chaser/
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-```
-
-## How to use with GitHub Pages
+## How to publish with GitHub Pages
 
 1. Create a new GitHub repository.
-2. Upload these files to the repository root.
+2. Upload `index.html`, `style.css`, `script.js`, and `README.md`.
 3. Go to **Settings → Pages**.
-4. Under **Build and deployment**, choose:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/root`
-5. Save and wait for GitHub to publish your page.
+4. Under **Build and deployment**, choose **Deploy from a branch**.
+5. Choose `main` and `/root`.
+6. Save.
 
-## Ideas for version 2
+Your Pocket Buddy will be live in a few minutes.
 
-- Add different buddy colors.
-- Add a night mode toggle.
-- Add more messages.
-- Let users choose cat / ghost / blob mode.
-- Add sound effects.
+## Ideas for v3
+
+- Night mode
+- Sound effects
+- More species
+- Mood system
+- Accessories
+- Export/share custom buddy settings
