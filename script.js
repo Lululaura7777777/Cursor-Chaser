@@ -82,10 +82,16 @@ function moveBuddy() {
 
   buddy.classList.remove("shy");
 
-  if (dist < 130 * sizeScale[state.size]) {
-    const angle = Math.atan2(pos.y - mouse.y, pos.x - mouse.x);
-    target.x = pos.x + Math.cos(angle) * 140;
-    target.y = pos.y + Math.sin(angle) * 140;
+  const safeRadius = 140 * sizeScale[state.size];
+
+  if (dist < safeRadius) {
+    // Park the target on a fixed ring around the cursor so the buddy settles
+    // there smoothly instead of oscillating across the trigger boundary.
+    const angle = dist < 0.001
+      ? Math.random() * Math.PI * 2
+      : Math.atan2(pos.y - mouse.y, pos.x - mouse.x);
+    target.x = mouse.x + Math.cos(angle) * safeRadius;
+    target.y = mouse.y + Math.sin(angle) * safeRadius;
     buddy.classList.add("shy");
     if (now - lastRandomTalk > 2600) {
       say(["Eek!", "Too close!", "You found me!", `${state.name}?`][Math.floor(Math.random() * 4)], 900);
